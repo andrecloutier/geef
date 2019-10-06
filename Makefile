@@ -3,9 +3,7 @@ REBAR=$(shell which rebar || echo ./rebar)
 all: compile
 
 ./rebar:
-	erl -noshell -s inets start -s ssl start \
-	  -eval 'httpc:request(get, {"https://github.com/downloads/basho/rebar/rebar", []}, [], [{stream, "./rebar"}])' \
-	  -s init stop
+	wget https://github.com/downloads/basho/rebar/rebar
 	chmod +x ./rebar
 
 compile: $(REBAR)
